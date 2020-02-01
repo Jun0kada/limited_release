@@ -11,11 +11,14 @@ module LimitedRelease
 
       prepend_before_action do
         LimitedRelease.load_features if ::Rails.env.development?
+
         @_limited_release = self.class.name.split('::')[1].sub(/Controller\z/, '').constantize
       end
 
       before_action do
         raise InvalidCondition unless @_limited_release.active?(self)
+
+        self.class.helper @_limited_release.helpers if @_limited_release.helpers
       end
     end
 

@@ -17,6 +17,11 @@ module LimitedRelease
         @routes = block if block
         @routes
       end
+
+      def helpers(&block)
+        @helpers = Module.new(&block) if block
+        @helpers
+      end
     end
   end
 end
