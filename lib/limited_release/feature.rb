@@ -10,7 +10,7 @@ module LimitedRelease
       end
 
       def active?(context)
-        context.instance_eval(&@active_if)
+        !!context.instance_eval(&@active_if)
       end
 
       def routes(&block)
