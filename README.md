@@ -1,9 +1,6 @@
 # LimitedRelease
 Short description and motivation.
 
-## Usage
-How to use my plugin.
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -20,6 +17,40 @@ Or install it yourself as:
 ```bash
 $ gem install limited_release
 ```
+
+## Usage
+
+### View override
+### Controller override
+### Add path
+### Helper method
+
+### On Error
+
+```ruby
+# config/initializers/limited_release.rb
+
+LimitedRelease.configure do |config|
+  config.on_error = -> (error) do
+    ::Rails.logger.error(e)
+    ::Rails.logger.error(e.backtrace.join("\n"))
+  end
+end
+```
+
+## Generator
+
+```
+$ rails generate limited_release FEATURE_NAME
+```
+
+### Example
+```
+$ rails generate limited_release new_feature
+```
+
+create `config/limited_releases/new_feature.rb`
+
 
 ## Contributing
 Contribution directions go here.
