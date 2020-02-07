@@ -7,7 +7,7 @@ module LimitedRelease
 
       @reloader = ActiveSupport::FileUpdateChecker.new(Dir[::Rails.root.join('config', 'limited_releases', '**', '*.rb')]) do
         ::LimitedRelease.reload!
-        ::Rails.application.reload_routes!
+        ::Rails.application.reloader.reload!
       end
     end
 
