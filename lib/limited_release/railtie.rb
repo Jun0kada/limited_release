@@ -12,6 +12,10 @@ module LimitedRelease
       end
     end
 
+    ActiveSupport.on_load :action_controller do
+      ActionController::Base.include ::LimitedRelease::Controller
+    end
+
     if ::Rails.env.development?
       initializer 'limited_release.insert_reloader' do |app|
         app.config.middleware.use ::LimitedRelease::Reloader
