@@ -25,15 +25,21 @@ $ gem install limited_release
 ### Add path
 ### Helper method
 
-### On Error
+### Config
 
 ```ruby
 # config/initializers/limited_release.rb
 
 LimitedRelease.configure do |config|
-  config.on_error = -> (error) do
-    ::Rails.logger.error(e)
-    ::Rails.logger.error(e.backtrace.join("\n"))
+  config.controller_namespace = :limited_release
+
+  config.on_error = -> (e) do
+    if ::Rails.env.development? || ::Rails.env.test?
+      raise e
+    else
+      ::Rails.logger.error(e)
+      ::Rails.logger.error(e.backtrace.join("\n"))
+    end
   end
 end
 ```

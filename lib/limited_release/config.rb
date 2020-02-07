@@ -4,6 +4,8 @@ module LimitedRelease
   include ActiveSupport::Configurable
 
   configure do |config|
+    config.controller_namespace = :limited_release
+
     config.on_error = -> (e) do
       if ::Rails.env.development? || ::Rails.env.test?
         raise e
