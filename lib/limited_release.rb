@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'limited_release/railtie'
 require 'limited_release/config'
 require 'limited_release/feature'
 require 'limited_release/controller'
 require 'limited_release/reloader'
+require 'limited_release/railtie'
 
 module LimitedRelease
   def self.features
