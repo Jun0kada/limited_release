@@ -20,10 +20,7 @@ $ gem install limited_release
 
 ## Usage
 
-### View override
-### Controller override
-### Add path
-### Helper method
+
 
 ### Config
 
@@ -59,7 +56,7 @@ create `config/limited_releases/new_feature.rb`
 
 
 ## Contributing
-Contribution directions go here.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Jun0kada/limited_release
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

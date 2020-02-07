@@ -4,13 +4,20 @@ module LimitedRelease
   module Controller
     extend ActiveSupport::Concern
 
+    module ClassMethods
+      def limited_release(name = nil)
+        @_limited_release = name if name
+        @_limited_release
+      end
+    end
+
     class InvalidCondition < StandardError; end
 
     included do
       prepend_around_action :wrap_rescue
 
       prepend_before_action do
-        @_limited_release = self.class.name.split('::')[1].sub(/Controller\z/, '').constantize
+        @_limited_release = self.class.limited_release&.constantize || self.class.name.split('::')[1].sub(/Controller\z/, '').classify.constantize
       end
 
       before_action do

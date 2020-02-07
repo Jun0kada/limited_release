@@ -10,7 +10,7 @@ class LimitedReleaseGenerator < ::Rails::Generators::NamedBase
   private
 
   def file_name
-    name.gsub('/', '_').underscore
+    name.underscore
   end
 
   def class_name
