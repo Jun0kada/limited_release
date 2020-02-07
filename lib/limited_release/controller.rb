@@ -18,7 +18,7 @@ module LimitedRelease
       before_action do
         raise InvalidCondition unless @_limited_release.active?(self)
 
-        self.class.helper @_limited_release.helpers if @_limited_release.helpers
+        self.class.helper @_limited_release.helpers
       end
     end
 
