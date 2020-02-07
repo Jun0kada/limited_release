@@ -1,5 +1,5 @@
 # LimitedRelease
-Short description and motivation.
+A simple, safe and rapid prototyping framework for Rails
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -9,18 +9,60 @@ gem 'limited_release'
 ```
 
 And then execute:
-```bash
+```
 $ bundle
 ```
 
 Or install it yourself as:
-```bash
+```
 $ gem install limited_release
 ```
 
 ## Usage
 
+```ruby
+# config/limited_releases/top_page_design.rb
 
+class TopPageDesign
+  include LimitedRelease::Feature
+
+  active_if do
+    params[:new_design].present?
+  end
+
+  routes do
+    get '/', to: 'top_page_designs#show', as: 'top_page_design'
+  end
+
+  helpers do
+    def title
+      'Welcome to New Design!'
+    end
+  end
+end
+```
+
+```ruby
+# app/controllers/limited_release/top_page_designs_controller.rb
+
+class LimitedRelease::TopPageDesignsController < TopController
+  ## you can specify limited_release class name
+  # limited_release 'TopPageDesign'
+
+  def show
+    super
+  end
+end
+```
+
+```html
+<!-- app/views/limited_release/top_page_designs/show.html.erb -->
+
+<h1><%= title %></h1>
+...
+```
+
+[Other examples](https://github.com/Jun0kada/limited_release/tree/master/test/dummy)
 
 ### Config
 
