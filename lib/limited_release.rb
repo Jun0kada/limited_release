@@ -4,12 +4,24 @@ require 'limited_release/railtie'
 require 'limited_release/config'
 require 'limited_release/feature'
 require 'limited_release/controller'
+require 'limited_release/reloader'
 
 module LimitedRelease
-  def self.load_features
-    @features = Dir[::Rails.root.join('config', 'limited_releases', '*.rb')].map do |path|
+  def self.features
+    @features ||= Dir[::Rails.root.join('config', 'limited_releases', '*.rb')].map do |path|
+      name = File.basename(path, '.rb').classify
+
+      Object.send(:remove_const, name) if Object.const_defined?(name)
+
       load path
-      File.basename(path, '.rb').classify.constantize
+      name.constantize
     end
+  end
+
+  def self.reload!
+    @features = nil
+    self.features
+
+    true
   end
 end
