@@ -68,6 +68,7 @@ end
 
 ```ruby
 # config/initializers/limited_release.rb
+require 'limited_release'
 
 LimitedRelease.configure do |config|
   config.controller_namespace = :limited_release

@@ -1,3 +1,5 @@
+require 'limited_release'
+
 LimitedRelease.configure do |config|
   config.on_error = -> (e) do
     ::Rails.logger.error(e)

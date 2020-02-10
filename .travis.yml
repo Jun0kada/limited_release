@@ -1,0 +1,15 @@
+language: ruby
+sudo: false
+
+before_install:
+  - gem install bundler --no-document -v 1.17.3
+  - bundle _1.17.3_ install
+
+matrix:
+  include:
+    - rvm: 2.5.0
+      gemfile: gemfiles/rails.6.0.x.gemfile
+    - rvm: 2.4.1
+      gemfile: gemfiles/rails.5.2.x.gemfile
+    - rvm: 2.4.1
+      gemfile: gemfiles/rails.5.0.x.gemfile
