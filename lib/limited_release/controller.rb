@@ -45,6 +45,7 @@ module LimitedRelease
     end
 
     def append_limited_release_helper
+      self.class.include @_limited_release.helpers
       self.class.helper @_limited_release.helpers
     end
 
